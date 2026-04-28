@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* TITAN FITNESS — Design System
+   Dark + bold purple gym aesthetic. All colors HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 260 30% 6%;
+    --foreground: 270 20% 96%;
+
+    --card: 260 28% 9%;
+    --card-foreground: 270 20% 96%;
+
+    --popover: 260 28% 9%;
+    --popover-foreground: 270 20% 96%;
+
+    --primary: 270 91% 60%;
+    --primary-foreground: 270 20% 99%;
+    --primary-glow: 280 95% 70%;
+
+    --secondary: 260 25% 14%;
+    --secondary-foreground: 270 20% 96%;
+
+    --muted: 260 20% 16%;
+    --muted-foreground: 260 10% 70%;
+
+    --accent: 285 90% 65%;
+    --accent-foreground: 270 20% 99%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 260 25% 18%;
+    --input: 260 25% 14%;
+    --ring: 270 91% 60%;
+
+    --radius: 0.85rem;
+
+    /* Brand gradients & effects */
+    --gradient-primary: linear-gradient(135deg, hsl(270 91% 60%), hsl(290 95% 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(260 80% 12% / 0.85), hsl(270 90% 25% / 0.55));
+    --gradient-radial: radial-gradient(circle at 20% 20%, hsl(280 95% 60% / 0.3), transparent 60%),
+                       radial-gradient(circle at 80% 80%, hsl(265 90% 50% / 0.25), transparent 55%);
+    --gradient-card: linear-gradient(160deg, hsl(260 28% 11%), hsl(260 30% 7%));
+
+    --shadow-glow: 0 20px 60px -15px hsl(270 91% 60% / 0.45);
+    --shadow-card: 0 10px 40px -10px hsl(260 50% 4% / 0.6);
+    --shadow-elevated: 0 30px 80px -20px hsl(270 91% 50% / 0.5);
+
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .dark {
+    /* Single-theme app — keep parity */
+    --background: 260 30% 6%;
+    --foreground: 270 20% 96%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer components {
+  .container-narrow {
+    @apply container max-w-6xl;
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-accent to-primary-glow bg-clip-text text-transparent;
+  }
+  .glass {
+    background: hsl(260 30% 10% / 0.6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid hsl(270 50% 30% / 0.25);
+  }
+  .glow-ring {
+    box-shadow: var(--shadow-glow);
+  }
+  .section-padding {
+    @apply py-20 md:py-28;
+  }
+  .hover-lift {
+    transition: var(--transition-smooth);
+  }
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-elevated);
+  }
+}
+
+@layer utilities {
+  .bg-radial-glow {
+    background-image: var(--gradient-radial);
+  }
+  .bg-gradient-primary {
+    background-image: var(--gradient-primary);
+  }
+  .bg-gradient-card {
+    background-image: var(--gradient-card);
+  }
+  .bg-gradient-hero {
+    background-image: var(--gradient-hero);
+  }
+  .text-shadow-glow {
+    text-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 30px hsl(var(--primary) / 0.4); }
+  50% { box-shadow: 0 0 60px hsl(var(--primary) / 0.7); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-float { animation: float 5s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.7s ease-out both; }
